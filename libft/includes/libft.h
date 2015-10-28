@@ -6,7 +6,7 @@
 /*   By: rclanget <rclanget@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/10 20:53:57 by rclanget          #+#    #+#             */
-/*   Updated: 2015/06/02 22:24:03 by rclanget         ###   ########.fr       */
+/*   Updated: 2015/10/20 16:02:14 by rclanget         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,5 +92,7 @@ int					ft_isspace(int c);
 char				**ft_strsplit_custom(char const *s, char c, char keep);
 int					get_next_line(int fd, char **line);
 int					ft_option(int ac, char **av, const char *list, int *option);
+void				ft_print(const char *fmt, ...);
+void				ft_fdprint(int fd, const char *fmt, ...);
 
 #endif

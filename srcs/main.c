@@ -6,26 +6,25 @@
 /*   By: rclanget <rclanget@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/18 15:53:14 by rclanget          #+#    #+#             */
-/*   Updated: 2015/09/18 15:53:15 by rclanget         ###   ########.fr       */
+/*   Updated: 2015/10/28 18:15:54 by rclanget         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_script.h"
-#include "ft_printf.h"
 #include "libft.h"
 #include <fcntl.h>
 
 int			ft_usage(char c)
 {
 	if (c)
-		ft_fdprintf(2, "ft_script: illegal option -- %c\n", c);
-	ft_fdprintf(2, "usage: ft_script [-aq] [file [command ...]]\n");
+		ft_fdprint(2, "ft_script: illegal option -- %c\n", c);
+	ft_fdprint(2, "usage: ft_script [-aq] [file [command ...]]\n");
 	return (-1);
 }
 
 int			ft_err(int ret, char *str)
 {
-	ft_fdprintf(2, str);
+	ft_fdprint(2, str);
 	return (ret);
 }
 
@@ -36,7 +35,7 @@ int			main(int ac, char **av, char **env)
 
 	ft_bzero(&args, sizeof(t_script));
 	args.env = env;
-	if ((i = ft_option(ac, av, "aq", &args.option)) == -1)
+	if ((i = ft_option(ac, av, "qa", &args.option)) == -1)
 		return (ft_usage(0));
 	args.filename = (*(av += i)) ? *av : DFILE;
 	if ((args.out_file = open(args.filename, (args.option & OPT_A)

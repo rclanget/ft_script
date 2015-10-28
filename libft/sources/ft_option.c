@@ -6,15 +6,23 @@
 /*   By: rclanget <rclanget@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/18 15:28:28 by rclanget          #+#    #+#             */
-/*   Updated: 2015/09/18 15:28:33 by rclanget         ###   ########.fr       */
+/*   Updated: 2015/10/28 18:49:33 by rclanget         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 
-static int	ft_pow(int i, int exposant)
+static int	ft_pow(int exposant)
 {
-	return ((exposant == 0) ? i * ft_pow(i, --exposant) : 1);
+	int i;
+
+	i = 1;
+	while (exposant)
+	{
+		i = i << 1;
+		exposant--;
+	}
+	return (i);
 }
 
 static void	ft_option_error(char *prog, char c)
@@ -40,12 +48,15 @@ static int	ft_mark_option(char **av, const char *list, int *opt, char *str)
 		list = s;
 		while (*list)
 		{
-			if (*list == *str && (*opt |= ft_pow(2, list - s)))
+			if (*list == *str && (*opt |= ft_pow(list - s)))
 				break ;
 			list++;
 		}
 		if (!*list)
-			return (ft_option_error(av[0], *str), 0);
+		{
+			ft_option_error(av[0], *str);
+			return (0);
+		}
 		str++;
 	}
 	return (1);
@@ -80,6 +91,9 @@ int			ft_option(int ac, char **av, const char *list, int *option)
 	while (*list)
 		list++;
 	if (list - s >= 32)
-		return (write(2, "Error : Too many option\n", 24), -1);
+	{
+		write(2, "Error : Too many option\n", 24);
+		return (-1);
+	}
 	return (ft_get_option(av, s, option));
 }

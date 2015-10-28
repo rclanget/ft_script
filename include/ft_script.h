@@ -6,7 +6,7 @@
 /*   By: rclanget <rclanget@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/18 15:12:36 by rclanget          #+#    #+#             */
-/*   Updated: 2015/09/18 15:12:40 by rclanget         ###   ########.fr       */
+/*   Updated: 2015/10/28 18:44:19 by rclanget         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ int						launch_script(t_script *args);
 int						ft_openpt(int *master, int *slave);
 int						slave(t_script *args, int fd_slave, int fd_master);
 void					script_master(t_script *script);
+int						ft_print_err(int n, char *cmd);
 
 int						term_init(t_script *args);
 void					term_restore(t_script *args);
